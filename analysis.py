@@ -40,7 +40,7 @@ def find_acc(test_path: str, weight_v: np.ndarray, features: FeatureClass) -> fl
 
 
 def q_func(weight_vector: np.ndarray, features: FeatureClass, w_1_n, idx, p_tag_list, pp_tag_list) -> np.ndarray:
-    # create history and turn it into features
+    # create matrix of combinations of pp_tag list, p_tag list and current tag list and return probabilities matrix
     rows, cols = [], []
     counter = 0
     ppword = '*' if idx - 2 < 0 else w_1_n[idx - 2]
@@ -62,6 +62,7 @@ def q_func(weight_vector: np.ndarray, features: FeatureClass, w_1_n, idx, p_tag_
 
 
 def memm_viterbi(weight_v: np.ndarray, features: FeatureClass, w_1_n, B=2) -> np.ndarray:
+    # B - Beam Search parameter
     labels = list(features.labels)
     n = len(w_1_n)
     pi_matrix = {(0, '*', '*'): 1}
