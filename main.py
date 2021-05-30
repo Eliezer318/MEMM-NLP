@@ -18,7 +18,6 @@ def train_1_eval_test_create_comp1(print_acc=True):
     reg, threshold = 1., 1.0  # 0.96321
     weights, features, losses = train.train('train1', 1000, threshold, reg)
     weights = np.array(weights)
-    # weights[weights.__abs__().argsort()[:20_060]] = 0
     analysis.create_comp_file('comp1.wtag', f'/datashare/hw1/comp1.words', weights, features)
     if print_acc:
         acc = analysis.find_acc(test_path, weights, features)
